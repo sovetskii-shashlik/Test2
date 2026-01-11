@@ -186,6 +186,7 @@
         .protocol-group h2.trojan { color: #f5576c; }
         .protocol-group h2.vless { color: #4ecdc4; }
         .protocol-group h2.hy2 { color: #ffa751; }
+        .protocol-group h2.vmess { color: #ff6961; }
 
         .group-list {
             display: grid;
@@ -250,6 +251,7 @@
                     <div class="protocol-filter" data-protocol="trojan">Trojan</div>
                     <div class="protocol-filter" data-protocol="vless">VLESS</div>
                     <div class="protocol-filter" data-protocol="hy2">Hysteria2</div>
+                    <div class="protocol-filter" data-protocol="vmess">Vmess</div>
                 </div>
                 <button class="btn-secondary" onclick="sortByPing()">
                     <i class="zmdi zmdi-sort"></i> Сортировать по пингу
@@ -302,6 +304,9 @@
     <script>
         // Исходный список конфигураций в памяти (без сохранения)
         let proxyConfigs = [
+            // Vmess
+            {name: "VPN vmess ru (test vmess 1)", link: "vmess://ac4c12c5-45f2-4398-a718-9983941ede2b@45.89.52.207:39651?encryption=auto&security=none&type=tcp#VPN%20vmess%20ru%20(test%20vmess%201)", protocol: "vmess", country: "ru", ping: null, checked: false, test: true},
+
             // Shadowsocks
             {name: "VPN ss nl 1", link: "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxN1pET1JXSWxpUUh1TzZXUkdIQ2hYWU16ZFJ0QVlWUA@45.14.245.2:443#VPN%20ss%20nl%201", protocol: "ss", country: "nl", ping: null, checked: false},
             {name: "VPN ss hr 2", link: "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpnWE9YazJGSndzejlQNm5YSUlDdUROT3FGOWdXWDFkbg@185.156.110.92:443#VPN%20ss%20hr%202", protocol: "ss", country: "hr", ping: null, checked: false},
@@ -336,12 +341,13 @@
             de: "Германия", nz: "Новая Зеландия", no: "Норвегия", at: "Австрия", fi: "Финляндия", uk: "Великобритания", xx: "Неизвестно"
         };
         const protocolTitles = {
+            vmess: "Vmess",
             ss: "Shadowsocks (SS)",
             trojan: "Trojan",
             vless: "VLESS",
             hy2: "Hysteria2"
         };
-        const knownProtocols = ['ss', 'trojan', 'hy2', 'vless'];
+        const knownProtocols = ['vmess', 'ss', 'trojan', 'hy2', 'vless'];
 
         let currentFilter = 'all';
         let isChecking = false;
